@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Observer</RootNamespace>
     <AssemblyName>Observer</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Product>Maybe</Product>
+    <PackageId>Observer.Maybe</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />

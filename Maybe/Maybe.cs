@@ -15,13 +15,13 @@ namespace Observer
 		{
 			this.value = value;
 			InnerException = null;
-			hasValue = true;
+			HasValue = true;
 			if (typeof(T).IsClass)
 			{
-				hasValue = ((value as object) != null);
+				HasValue = ((value as object) != null);
 			}
 		}
-		public bool HasValue { get => hasValue; }
+		public bool HasValue { get; }
 		public bool HasException { get => InnerException != null; }
 		public Exception? InnerException { get; private set; }
 		public T Value
@@ -123,7 +123,6 @@ namespace Observer
 			value = this.Value;
 		}
 		private readonly T value;
-		private readonly bool hasValue;
 		private Maybe<TOut> ValueResult<TOut>(Exception? ex = null) where TOut : notnull
 		{
 			return new Maybe<TOut>
