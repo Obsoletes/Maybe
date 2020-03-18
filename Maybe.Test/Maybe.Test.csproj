@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>Observer.Test</RootNamespace>
+    <RootNamespace>Observer.Maybe.Test</RootNamespace>
 
-    <AssemblyName>Observer.Test</AssemblyName>
+    <AssemblyName>Observer.Maybe.Test</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 #nullable enable
 namespace Observer
 {
-	public struct Maybe<T> : IEquatable<Maybe<T>> 
+	public struct Maybe<T> : IEquatable<Maybe<T>> where T : notnull
 	{
 		public static Maybe<T> None { get; }
 		public static implicit operator Maybe<T>(T obj)
@@ -15,8 +15,13 @@ namespace Observer
 		{
 			this.value = value;
 			InnerException = null;
+			hasValue = true;
+			if (typeof(T).IsClass)
+			{
+				hasValue = ((value as object) != null);
+			}
 		}
-		public bool HasValue { get => value != null; }
+		public bool HasValue { get => hasValue; }
 		public bool HasException { get => InnerException != null; }
 		public Exception? InnerException { get; private set; }
 		public T Value
@@ -29,43 +34,44 @@ namespace Observer
 					throw new InvalidOperationException("empty maybe");
 			}
 		}
-		public Maybe<TOut> Then<TOut>(Func<T, TOut> func)
+		public Maybe<TOut> Then<TOut>(Func<T, TOut> func) where TOut : notnull
 		{
 			if (HasValue)
 				return new Maybe<TOut>(func(value!));
 			else
-				return Maybe<TOut>.None;
+				return ValueResult<TOut>();
 		}
-		public void Then<TOut>(Action<T> action)
+		public MaybeResult Then<TOut>(Action<T> action)
 		{
 			if (HasValue)
 				action(value!);
+			return EmptyResult();
 		}
-		public Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func)
+		public Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) where TOut : notnull
 		{
 			try
 			{
 				if (HasValue)
 					return new Maybe<TOut>(func(value!));
 				else
-					return Maybe<TOut>.None;
+					return ValueResult<TOut>();
 			}
 			catch (Exception ex)
 			{
-				InnerException = ex;
-				return Maybe<TOut>.None;
+				return ValueResult<TOut>(ex);
 			}
 		}
-		public void ThenNoThrow<TOut>(Action<T> action)
+		public MaybeResult ThenNoThrow(Action<T> action)
 		{
 			try
 			{
 				if (HasValue)
 					action(value!);
+				return EmptyResult();
 			}
 			catch (Exception ex)
 			{
-				InnerException = ex;
+				return EmptyResult(ex);
 			}
 		}
 		public Maybe<T> Or(T obj)
@@ -75,7 +81,6 @@ namespace Observer
 			else
 				return new Maybe<T>(obj);
 		}
-		private readonly T value;
 
 		public override bool Equals(object? obj)
 		{
@@ -116,6 +121,19 @@ namespace Observer
 		{
 			hasValue = this.HasValue;
 			value = this.Value;
+		}
+		private readonly T value;
+		private readonly bool hasValue;
+		private Maybe<TOut> ValueResult<TOut>(Exception? ex = null) where TOut : notnull
+		{
+			return new Maybe<TOut>
+			{
+				InnerException = ex ?? InnerException
+			};
+		}
+		private MaybeResult EmptyResult(Exception? ex = null)
+		{
+			return new MaybeResult(ex ?? InnerException);
 		}
 	}
 }
