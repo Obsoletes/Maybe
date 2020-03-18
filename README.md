@@ -4,7 +4,7 @@
 	<img src='https://img.shields.io/nuget/v/Observer.Maybe.svg'>
 </p>
 
-	一个 C# 版本的 `Maybe` 
+>一个 C# 版本的 `Maybe` 
 
 ## Feature 
 
@@ -19,7 +19,6 @@
 
 ========================
 
-	```
 	public bool HasValue { get; }
 	public bool HasException { get; }
 	public Exception? InnerException { get; }
@@ -29,7 +28,6 @@
 	public Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) ;
 	public MaybeResult ThenNoThrow(Action<T> action);
 	public Maybe<T> Or(T obj);
-	```
 
 ## Install
 
@@ -41,7 +39,6 @@ or
 
 ## Usage
 
-	```
 	Maybe<string> maybe = "123456";
 	var testObj = maybe.Then(s => s.Substring(0, 3));
 	var result = testObj switch
@@ -49,12 +46,11 @@ or
 		(true, string value) => value,
 		(false, _) => "None"
 	};
-	```
 
 ## ChangeLog
 
-	**1.0** 2020-3-18
-	基本实现
+>**1.0** 2020-3-18
+>>基本实现
 
 ## License
 
