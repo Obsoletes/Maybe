@@ -18,6 +18,7 @@ namespace Observer.Test
 		{
 			Maybe<string> maybe = "123456";
 			Assert.True(maybe.Then(s => s.Substring(0, 5)).Then(s => s.Length) == 5);
+			Assert.True(maybe.Then<int>(int.TryParse) == 123456);
 		}
 		[Fact]
 		public void TestMatch()

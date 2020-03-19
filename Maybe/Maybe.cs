@@ -5,12 +5,12 @@ namespace Observer
 {
 	public struct Maybe<T> : IEquatable<Maybe<T>> where T : notnull
 	{
+		public delegate bool TryFunction<TIn, TResult>(TIn a, out TResult b);
 		public static Maybe<T> None { get; }
 		public static implicit operator Maybe<T>(T obj)
 		{
 			return new Maybe<T>(obj);
 		}
-
 		public Maybe(T value)
 		{
 			this.value = value;
@@ -33,6 +33,14 @@ namespace Observer
 				else
 					throw new InvalidOperationException("empty maybe");
 			}
+		}
+		public Maybe<TResult> Then<TResult>(TryFunction<T, TResult> @try) where TResult : notnull
+		{
+			if (HasValue && @try(Value, out TResult result))
+			{
+				return new Maybe<TResult>(result);
+			}
+			return new Maybe<TResult>();
 		}
 		public Maybe<TOut> Then<TOut>(Func<T, TOut> func) where TOut : notnull
 		{

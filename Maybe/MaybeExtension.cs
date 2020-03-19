@@ -6,6 +6,15 @@ namespace Observer
 {
 	public static class MaybeExtension
 	{
+		public delegate bool TryFunction<TIn, TResult>(TIn a, out TResult b);
+		public static Maybe<TResult> Try<TIn, TResult>(this Maybe<TIn> maybe, TryFunction<TIn, TResult> @try) where TIn : notnull where TResult : notnull
+		{
+			if (maybe.HasValue && @try(maybe.Value, out TResult result))
+			{
+				return new Maybe<TResult>(result);
+			}
+			return new Maybe<TResult>();
+		}
 		public static void TryThrow<T>(this Maybe<T> maybe) where T : notnull
 		{
 			if (maybe.HasException)

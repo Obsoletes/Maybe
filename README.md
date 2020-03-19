@@ -52,6 +52,8 @@ or
 >**1.0** 2020-3-18
 >>基本实现
 
+>**1.1** 2020-3-19
+>>对 `bool TryFunction<TIn, TResult>(TIn a, out TResult b)` 的支持
 ## License
 
-[MIT](LICENSE) © Richard Littauer
+[MIT](LICENSE) 

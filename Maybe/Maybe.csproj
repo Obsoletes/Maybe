@@ -8,6 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>Maybe</Product>
     <PackageId>Observer.Maybe</PackageId>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
