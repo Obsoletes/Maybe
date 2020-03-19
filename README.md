@@ -1,4 +1,4 @@
-# Maybe 1.0
+# Maybe 1.1
 <p align="left">
 	<img src='https://img.shields.io/github/workflow/status/Obsoletes/Maybe/.NET Core'>
 	<img src='https://img.shields.io/nuget/v/Observer.Maybe.svg'>
@@ -19,15 +19,16 @@
 
 ========================
 
-	public bool HasValue { get; }
-	public bool HasException { get; }
-	public Exception? InnerException { get; }
-	public T Value { get; }
-	public Maybe<TOut> Then<TOut>(Func<T, TOut> func);
-	public MaybeResult Then<TOut>(Action<T> action);
-	public Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) ;
-	public MaybeResult ThenNoThrow(Action<T> action);
-	public Maybe<T> Or(T obj);
+	bool HasValue { get; }
+	bool HasException { get; }
+	Exception? InnerException { get; }
+	T Value { get; }
+	Maybe<TOut> Then<TOut>(Func<T, TOut> func);
+	MaybeResult Then<TOut>(Action<T> action);
+	Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) ;
+	MaybeResult ThenNoThrow(Action<T> action);
+	Maybe<T> Or(T obj);
+	Maybe<TResult> Then<TResult>(TryFunction<T, TResult> @try)
 
 ## Install
 
