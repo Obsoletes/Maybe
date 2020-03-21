@@ -17,16 +17,6 @@ jobs:
         dotnet-version: 3.1.101
     - name: Test
       run: dotnet test
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Build
-      run: dotnet build --configuration Release
   publish:
     needs: [test, build]
     name: Publish Project to Nuget
@@ -40,9 +30,9 @@ jobs:
     - name: Publish
       run: |
         cd Maybe
-        ls
-        dotnet pack --configuration release 
-        dotnet nuget push bin/release/*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
+        dotnet build --configuration Release
+        dotnet pack --configuration Release 
+        dotnet nuget push bin/Release/*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
       env:
         APIKEY: ${{ secrets.NUGET_KEY }}
 
