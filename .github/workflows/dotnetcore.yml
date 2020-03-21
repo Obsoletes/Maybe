@@ -31,7 +31,6 @@ jobs:
       run: |
         cd Maybe
         dotnet build --configuration Release
-        dotnet pack --configuration Release 
         dotnet nuget push bin/Release/*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
       env:
         APIKEY: ${{ secrets.NUGET_KEY }}
