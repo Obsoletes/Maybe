@@ -32,10 +32,17 @@ jobs:
     name: Publish Project to Nuget
     runs-on: ubuntu-latest
     steps:
-    - name: Publish NuGet
-      uses: rohith/publish-nuget@v2.2.0
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        PROJECT_FILE_PATH: Maybe/Maybe.csproj
-        NUGET_KEY: ${{ secrets.NUGET_KEY }}
-        PACKAGE_NAME: Observer.Maybe
+        dotnet-version: 3.1.101
+    - name: Publish
+      run: |
+        cd Maybe
+        ls
+        dotnet pack --configuration release 
+        dotnet nuget push bin/release/*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
+      env:
+        APIKEY: ${{ secrets.NUGET_KEY }}
 
