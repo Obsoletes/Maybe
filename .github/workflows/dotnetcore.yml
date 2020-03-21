@@ -39,9 +39,8 @@ jobs:
         dotnet-version: 3.1.101
     - name: Publish
       run: |
-        version=`git describe --tags`
-        dotnet pack Maybe --configuration release -p:PackageVersion=$version
-        dotnet nuget push Maybe/bin/release/Monkey.$version.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
+        dotnet pack Maybe --configuration release 
+        dotnet nuget push Maybe/bin/release/*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
       env:
         APIKEY: ${{ secrets.NUGET_KEY }}
 
