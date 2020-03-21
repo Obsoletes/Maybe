@@ -18,7 +18,7 @@ jobs:
     - name: Test
       run: dotnet test
   publish:
-    needs: [test, build]
+    needs: [test]
     name: Publish Project to Nuget
     runs-on: ubuntu-latest
     steps:
