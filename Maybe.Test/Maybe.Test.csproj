@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard1.1,netstandard2.1</TargetFrameworks>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
 		<IsPackable>false</IsPackable>
 		<RootNamespace>Observer.Maybe.Test</RootNamespace>
 		<AssemblyName>Observer.Maybe.Test</AssemblyName>
@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
 		<PackageReference Include="xunit" Version="2.4.0" />
-		<PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
+		<PackageReference Include="xunit.extensibility.execution" Version="2.4.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
 		<PackageReference Include="coverlet.collector" Version="1.0.1" />
 	</ItemGroup>
