@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.2;netcoreapp3.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>Observer</RootNamespace>
-    <AssemblyName>Observer</AssemblyName>
+    <AssemblyName>Observer.Maybe</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>Maybe</Product>
     <PackageId>Observer.Maybe</PackageId>
-    <Version>1.1.0</Version>
+	<Version>1.1.0</Version>
+	<NuspecFile>Observer.Maybe.nuspec</NuspecFile>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
