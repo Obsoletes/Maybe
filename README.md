@@ -1,4 +1,4 @@
-# Maybe 1.1
+# Maybe 1.2
 <p align="left">
 	<img src='https://img.shields.io/github/workflow/status/Obsoletes/Maybe/.NET Core'>
 	<img src='https://img.shields.io/nuget/v/Observer.Maybe.svg'>
