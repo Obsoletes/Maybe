@@ -4,22 +4,27 @@ using System.Text;
 
 namespace Observer
 {
+	/// <summary>
+	/// Extension for Maybe
+	/// </summary>
 	public static class MaybeExtension
 	{
-		public delegate bool TryFunction<TIn, TResult>(TIn a, out TResult b);
-		public static Maybe<TResult> Try<TIn, TResult>(this Maybe<TIn> maybe, TryFunction<TIn, TResult> @try) where TIn : notnull where TResult : notnull
-		{
-			if (maybe.HasValue && @try(maybe.Value, out TResult result))
-			{
-				return new Maybe<TResult>(result);
-			}
-			return new Maybe<TResult>();
-		}
+		/// <summary>
+		/// if maybe has exception, throw it
+		/// </summary>
+		/// <exception cref="System.AggregateException"></exception>
+		/// <typeparam name="T">type</typeparam>
+		/// <param name="maybe">this</param>
 		public static void TryThrow<T>(this Maybe<T> maybe) where T : notnull
 		{
 			if (maybe.HasException)
 				throw new AggregateException(maybe.InnerException!);
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> or1) where T : notnull
 		{
 			if (that.HasValue)
@@ -27,6 +32,11 @@ namespace Observer
 			else
 				return or1;
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> or1, Maybe<T> or2) where T : notnull
 		{
 			if (that.HasValue)
@@ -36,6 +46,11 @@ namespace Observer
 			else
 				return or2;
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> or1, Maybe<T> or2, Maybe<T> or3) where T : notnull
 		{
 			if (that.HasValue)
@@ -47,6 +62,11 @@ namespace Observer
 			else
 				return or3;
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> or1, Maybe<T> or2, Maybe<T> or3, Maybe<T> or4) where T : notnull
 		{
 			if (that.HasValue)
@@ -60,6 +80,11 @@ namespace Observer
 			else
 				return or4;
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, Maybe<T> or1, Maybe<T> or2, Maybe<T> or3, Maybe<T> or4, Maybe<T> or5) where T : notnull
 		{
 			if (that.HasValue)
@@ -75,6 +100,11 @@ namespace Observer
 			else
 				return or5;
 		}
+		/// <summary>
+		/// if this maybe has value,then nothing happen
+		/// else return maybe with Maybe(value)
+		/// </summary>
+		/// <returns>a maybe</returns>
 		public static Maybe<T> Or<T>(this Maybe<T> that, params Maybe<T>[] ors) where T : notnull
 		{
 			if (that.HasValue)

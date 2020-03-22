@@ -11,6 +11,7 @@
 	<Version>1.1.0</Version>
 	<NuspecFile>Observer.Maybe.nuspec</NuspecFile>
 	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
