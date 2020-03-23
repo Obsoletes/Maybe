@@ -7,7 +7,7 @@ namespace Observer
 	/// <summary>
 	/// The no result version of maybe
 	/// </summary>
-	public struct MaybeResult
+	public readonly struct MaybeResult
 	{
 		/// <summary>
 		/// whether this maybe has exception
@@ -17,12 +17,12 @@ namespace Observer
 		/// return the exception if have 
 		/// return null if not 
 		/// </summary>
-		public Exception? InnerException { get; private set; }
+		public Exception? InnerException { get; }
 		/// <summary>
 		/// Construct from exception
 		/// </summary>
 		/// <param name="ex"></param>
-		public MaybeResult(Exception? ex)
+		internal MaybeResult(Exception? ex)
 		{
 			InnerException = ex;
 		}

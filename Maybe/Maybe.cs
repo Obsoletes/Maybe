@@ -142,6 +142,43 @@ namespace Observer
 			return EmptyResult();
 		}
 		/// <summary>
+		/// use function like <c>bool Try(TIn @in, out TResult @result)</c>
+		/// The function return value indicates whether the conversion succeeded.
+		/// the parameter @result of function is the result of function
+		/// will catch exception throwed by funciton
+		/// </summary>
+		/// <remarks>
+		/// if <paramref name="try"/> return null,the maybe has no value
+		/// </remarks>
+		/// <typeparam name="TResult">return of <paramref name="try"/></typeparam>
+		/// <param name="try">the function</param>
+		/// <example>
+		/// <code>
+		/// Maybe&lt;string&gt; maybe = "123456";
+		/// var result = maybe.Then(int.TryParse);
+		/// </code>
+		/// </example>
+		/// <returns>
+		/// return maybe with result if maybe has value and function return true
+		/// if not, return maybe with nothing
+		/// </returns>
+		public Maybe<TResult> ThenNoThrow<TResult>(Maybe.TryFunction<T, TResult> @try) where TResult : notnull
+		{
+			try
+			{
+				if (HasValue && @try(Value, out TResult result))
+				{
+					return new Maybe<TResult>(result);
+				}
+				return new Maybe<TResult>();
+			}
+			catch (Exception ex)
+			{
+				return ValueResult<TResult>(ex);
+			}
+			
+		}
+		/// <summary>
 		/// use function
 		/// will catch exception throwed by funciton and put it in the returned maybe
 		/// </summary>

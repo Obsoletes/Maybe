@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd nuspec.xsd">
 	<metadata>
 		<id>Observer.Maybe</id>
-		<version>1.2.0</version>
+		<version>1.2.1</version>
 		<description>Maybe for C#</description>
 		<authors>Observer</authors>
 		<projectUrl>https://github.com/Obsoletes/Maybe</projectUrl>

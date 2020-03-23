@@ -51,7 +51,6 @@ namespace Observer.Test
 			Maybe<int> t4 = 0;
 			Assert.False(t3.HasValue);
 			Assert.True(t4.HasValue);
-			Maybe<int?> t = 5;
 		}
 	}
 }

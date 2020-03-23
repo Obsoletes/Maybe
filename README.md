@@ -19,16 +19,17 @@
 
 ========================
 
-	bool HasValue { get; }
 	bool HasException { get; }
+	bool HasValue { get; }
 	Exception? InnerException { get; }
-	T Value { get; }
-	Maybe<TOut> Then<TOut>(Func<T, TOut> func);
-	MaybeResult Then<TOut>(Action<T> action);
-	Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) ;
-	MaybeResult ThenNoThrow(Action<T> action);
 	Maybe<T> Or(T obj);
+	Maybe<TOut> Then<TOut>(Func<T, TOut> func);
+	Maybe<TOut> ThenNoThrow<TOut>(Func<T, TOut> func) ;
 	Maybe<TResult> Then<TResult>(TryFunction<T, TResult> @try)
+	Maybe<TResult> ThenNoThrow<TResult>(TryFunction<T, TResult> @try)
+	MaybeResult Then<TOut>(Action<T> action);
+	MaybeResult ThenNoThrow(Action<T> action);
+	T Value { get; }
 
 ## Install
 
@@ -52,9 +53,11 @@ or
 
 >**1.0** 2020-3-18
 >>基本实现
-
 >**1.1** 2020-3-19
 >>对 `bool TryFunction<TIn, TResult>(TIn a, out TResult b)` 的支持
+>**1.2** 2020-3-23
+>>增进对 `bool TryFunction<TIn, TResult>(TIn a, out TResult b)` 的支持
+>>Maybe变为readonly
 ## License
 
 [MIT](LICENSE) 
