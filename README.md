@@ -53,11 +53,14 @@ or
 
 >**1.0** 2020-3-18
 >>基本实现
+
 >**1.1** 2020-3-19
 >>对 `bool TryFunction<TIn, TResult>(TIn a, out TResult b)` 的支持
+
 >**1.2** 2020-3-23
 >>增进对 `bool TryFunction<TIn, TResult>(TIn a, out TResult b)` 的支持
 >>Maybe变为readonly
+
 ## License
 
 [MIT](LICENSE) 
